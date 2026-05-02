@@ -8,12 +8,14 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',sans-serif;background:#f3eafc;color:#2d2d2d;font-size:14px;min-height:100vh}
 :root{--roxo:#7B00B4;--roxo-esc:#5a007a;--roxo-med:#3d0057;--borda:#e2d4f0;--cinza:#9b6bb5;--verde:#2f855a;--laranja:#c05621}
-header{background:var(--roxo);color:#fff;padding:16px 20px 12px;box-shadow:0 4px 18px rgba(123,0,180,.35)}
-.h-dra{font-size:10px;letter-spacing:2px;opacity:.8}
-.h-nome{font-family:Georgia,serif;font-style:italic;font-size:26px;line-height:1.1}
-.h-cargo{font-size:11px;letter-spacing:2px;opacity:.85;margin-top:2px}
-.h-crp{font-size:11px;opacity:.7;margin-top:1px}
-.h-app{font-size:13px;font-weight:700;margin-top:8px;background:rgba(255,255,255,.15);padding:5px 12px;border-radius:8px;display:inline-block}
+header{background:var(--roxo);color:#fff;padding:16px 20px;box-shadow:0 4px 18px rgba(123,0,180,.35);display:flex;align-items:center;justify-content:space-between;position:relative}
+.h-esq .h-dra{font-size:10px;letter-spacing:2px;opacity:.8}
+.h-esq .h-nome{font-family:Georgia,serif;font-style:italic;font-size:26px;line-height:1.1}
+.h-esq .h-cargo{font-size:11px;letter-spacing:2px;opacity:.85;margin-top:2px}
+.h-esq .h-crp{font-size:11px;opacity:.7;margin-top:1px}
+.h-centro{position:absolute;left:50%;transform:translateX(-50%);text-align:center}
+.h-centro .h-sub{font-size:11px;letter-spacing:2px;opacity:.8;text-transform:uppercase;margin-bottom:2px}
+.h-centro .h-titulo{font-size:24px;font-weight:700;letter-spacing:1px;white-space:nowrap}
 .login-wrap{max-width:360px;margin:0 auto;padding:16px}
 .card{background:#fff;border-radius:14px;box-shadow:0 2px 12px rgba(123,0,180,.10);border:1.5px solid var(--borda);padding:20px}
 input,select,textarea{width:100%;padding:9px 12px;border:1.5px solid var(--borda);border-radius:9px;background:#fdf8ff;font-size:14px;color:#2d2d2d;font-family:'Segoe UI',sans-serif;outline:none}
@@ -42,7 +44,6 @@ textarea{resize:vertical;min-height:64px}
 .campo-voz{display:flex;gap:8px;align-items:flex-start}
 .campo-voz textarea,.campo-voz input{flex:1}
 label{display:block;font-size:12px;font-weight:700;color:var(--roxo-esc);margin-bottom:4px;margin-top:10px}
-/* nivel */
 .nivel-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:12px 0}
 .nivel-btn{border:2px solid var(--borda);border-radius:10px;padding:8px 4px;text-align:center;cursor:pointer;background:#fff;transition:all .2s}
 .nivel-btn:hover,.nivel-btn.sel{border-color:var(--roxo);background:#f3eafc}
@@ -52,7 +53,6 @@ label{display:block;font-size:12px;font-weight:700;color:var(--roxo-esc);margin-
 .n6{color:#dd6b20}.n7{color:#e53e3e}.n8{color:#c53030}.n9{color:#9b2c2c}.n10{color:#742a2a}
 .nivel-info{background:#fdf4ff;border-radius:10px;padding:11px 14px;border:1px solid var(--borda);margin-bottom:12px;font-size:13px;color:var(--roxo-med);font-weight:700;display:none}
 .grafico-wrap{position:relative;height:170px;margin:10px 0}
-/* tracking */
 .track-group{font-size:11px;font-weight:700;color:var(--cinza);text-transform:uppercase;letter-spacing:1px;padding:10px 0 6px}
 .track-table{width:100%;border-collapse:collapse;margin-bottom:12px}
 .track-table th{font-size:11px;font-weight:700;color:var(--roxo-esc);text-align:center;padding:6px 2px;border-bottom:2px solid var(--borda)}
@@ -63,7 +63,6 @@ label{display:block;font-size:12px;font-weight:700;color:var(--roxo-esc);margin-
 .t-dot{width:24px;height:24px;border-radius:50%;border:2px solid var(--borda);background:#fff;cursor:pointer;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:11px;transition:all .2s}
 .t-dot.ok{background:var(--roxo);border-color:var(--roxo);color:#fff}
 .seq-box{text-align:center;font-size:13px;color:var(--roxo-esc);font-weight:700;padding:10px;background:#fdf4ff;border-radius:10px;border:1px solid var(--borda);margin-top:8px}
-/* pensamentos */
 .perg-card{background:#fdf4ff;border-radius:12px;padding:14px;border:1px solid var(--borda)}
 .perg-num{font-size:11px;font-weight:700;color:var(--cinza);margin-bottom:4px}
 .perg-texto{font-size:13px;font-weight:700;color:var(--roxo-med);margin-bottom:10px;line-height:1.4}
@@ -71,19 +70,18 @@ label{display:block;font-size:12px;font-weight:700;color:var(--roxo-esc);margin-
 .perg-dots{display:flex;gap:5px}
 .perg-dot{width:8px;height:8px;border-radius:50%;background:var(--borda)}
 .perg-dot.ativo{background:var(--roxo)}
-/* roda da vida */
-.roda-slider{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--borda)}
-.roda-slider:last-child{border-bottom:none}
+.roda-slider{display:flex;align-items:center;gap:12px;padding:10px 0}
 .roda-area-nome{font-size:13px;font-weight:700;color:var(--roxo-med);min-width:130px}
 .roda-slider input[type=range]{flex:1;accent-color:var(--roxo)}
 .roda-nota{font-size:18px;font-weight:700;color:var(--roxo);min-width:28px;text-align:right}
-/* dashboard */
+.roda-desc{font-size:11px;color:var(--cinza);padding:0 0 10px;line-height:1.5;border-bottom:1px solid var(--borda);margin-bottom:2px}
 .pac-card{background:#fff;border-radius:12px;border:1.5px solid var(--borda);padding:14px;cursor:pointer;transition:all .2s;margin-bottom:10px}
 .pac-card:hover{border-color:var(--roxo)}
 .pac-nome{font-weight:700;color:var(--roxo-med);font-size:15px}
 .pac-info{font-size:12px;color:var(--cinza);margin-top:3px}
 .badge{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:700}
 .badge-v{background:#c6f6d5;color:#276749}.badge-a{background:#fefcbf;color:#744210}.badge-r{background:#fed7d7;color:#742a2a}
+.loading{text-align:center;padding:30px;color:var(--cinza);font-size:13px}
 .toast{position:fixed;bottom:20px;right:20px;background:var(--roxo);color:#fff;padding:10px 18px;border-radius:10px;font-size:13px;font-weight:700;opacity:0;transition:opacity .3s;pointer-events:none;z-index:999}
 .toast.show{opacity:1}
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:100;align-items:center;justify-content:center}
@@ -99,16 +97,17 @@ footer{text-align:center;padding:12px;color:var(--cinza);font-size:11px}
 </style>
 </head>
 <body>
-<header style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;position:relative">
-  <div style="z-index:1">
+
+<header>
+  <div class="h-esq">
     <div class="h-dra">Dra</div>
     <div class="h-nome">Lucia Kratz</div>
     <div class="h-cargo">P s i c ó l o g a</div>
     <div class="h-crp">CRP 09/20590</div>
   </div>
-  <div style="position:absolute;left:50%;transform:translateX(-50%);text-align:center">
-    <div style="font-size:11px;letter-spacing:2px;opacity:.8;text-transform:uppercase;margin-bottom:2px">Ferramenta clínica</div>
-    <div style="font-size:24px;font-weight:700;letter-spacing:1px;white-space:nowrap">Gestão da Ansiedade</div>
+  <div class="h-centro">
+    <div class="h-sub">Ferramenta clínica</div>
+    <div class="h-titulo">Gestão da Ansiedade</div>
   </div>
 </header>
 
@@ -128,11 +127,9 @@ footer{text-align:center;padding:12px;color:var(--cinza);font-size:11px}
     <div class="autocomplete-box" id="autoBox"></div>
     <div style="margin-top:12px"><button class="btn btn-roxo" style="width:100%" onclick="entrarPac()">Entrar</button></div>
   </div>
-
-  <!-- INSTRUCOES abaixo do login -->
   <div style="margin-top:14px;background:#fdf4ff;border-left:4px solid var(--roxo);border-radius:0 10px 10px 0;padding:14px 16px">
     <div style="font-size:13px;font-weight:700;color:var(--roxo-med);margin-bottom:6px">Instruções de Uso</div>
-    <div style="font-size:12px;color:#2d2d2d;line-height:1.6;margin-bottom:8px">Use este app no seu dia a dia para acompanhar sua saúde emocional. Não precisa preencher tudo de uma vez — registre o que fizer e sinta o quanto cada pequeno passo faz diferença.</div>
+    <div style="font-size:12px;color:#2d2d2d;line-height:1.6;margin-bottom:8px">Use este app no seu dia a dia para acompanhar sua saúde emocional. Não precisa preencher tudo de uma vez.</div>
     <div style="font-size:12px;color:#2d2d2d;line-height:1.8">
       <div><strong style="color:var(--roxo-esc)">Nível de Estresse:</strong> Avalie como está se sentindo e acompanhe sua evolução.</div>
       <div><strong style="color:var(--roxo-esc)">Tracking:</strong> Marque as atividades de relaxamento que praticou em cada dia.</div>
@@ -153,7 +150,7 @@ footer{text-align:center;padding:12px;color:var(--cinza);font-size:11px}
     <button class="tab ativo" onclick="goTab('estresse',this)">Nível de Estresse</button>
     <button class="tab" onclick="goTab('tracking',this)">Tracking</button>
     <button class="tab" onclick="goTab('pensamentos',this)">Pensamentos</button>
-    <button class="tab" onclick="goTab('rotina',this)">Rotina Emocional</button>
+    <button class="tab" onclick="goTab('rotina',this)">Roda da Vida</button>
   </div>
   <div id="tabsPsi" class="tabs" style="display:none">
     <button class="tab ativo" onclick="goTabPsi('dashboard',this)">Pacientes</button>
@@ -161,7 +158,6 @@ footer{text-align:center;padding:12px;color:var(--cinza);font-size:11px}
     <button class="tab" id="tabFicha" style="display:none" onclick="goTabPsi('ficha',this)">Ficha</button>
   </div>
 
-  <!-- ESTRESSE -->
   <div id="sec-estresse" class="secao ativo">
     <div class="card">
       <div class="sec-titulo">Como você está hoje?</div>
@@ -180,7 +176,6 @@ footer{text-align:center;padding:12px;color:var(--cinza);font-size:11px}
     </div>
   </div>
 
-  <!-- TRACKING -->
   <div id="sec-tracking" class="secao">
     <div class="card">
       <div class="sec-titulo">Tracking Anti Ansiedade</div>
@@ -194,7 +189,6 @@ footer{text-align:center;padding:12px;color:var(--cinza);font-size:11px}
     </div>
   </div>
 
-  <!-- PENSAMENTOS -->
   <div id="sec-pensamentos" class="secao">
     <div class="card">
       <div class="sec-titulo">Minha Ansiedade</div>
@@ -203,26 +197,21 @@ footer{text-align:center;padding:12px;color:var(--cinza);font-size:11px}
     </div>
   </div>
 
-  <!-- RODA DA VIDA -->
   <div id="sec-rotina" class="secao">
     <div class="card">
       <div class="sec-titulo">Roda da Vida</div>
       <div class="sec-sub">Dê uma nota de 0 a 10 para seu nível de satisfação em cada área da sua vida agora.</div>
       <div id="rodaSliders"></div>
-      <div class="row-btn">
-        <button class="btn btn-verde" onclick="salvarRoda()">Salvar roda</button>
-      </div>
+      <div class="row-btn"><button class="btn btn-verde" onclick="salvarRoda()">Salvar roda</button></div>
       <div class="sep"></div>
       <div style="font-size:13px;font-weight:700;color:var(--roxo-esc);margin-bottom:4px">Minha roda hoje</div>
       <div style="position:relative;height:280px;max-width:380px;margin:0 auto"><canvas id="chartRodaHoje"></canvas></div>
       <div class="sep"></div>
-      <div style="font-size:13px;font-weight:700;color:var(--roxo-esc);margin-bottom:4px">Evolução ao longo do tempo</div>
-      <div style="font-size:11px;color:var(--cinza);margin-bottom:8px">Últimas 3 rodas salvas sobrepostas</div>
+      <div style="font-size:13px;font-weight:700;color:var(--roxo-esc);margin-bottom:4px">Evolução — últimas 3 rodas</div>
       <div style="position:relative;height:280px;max-width:380px;margin:0 auto"><canvas id="chartRodaComp"></canvas></div>
     </div>
   </div>
 
-  <!-- DASHBOARD -->
   <div id="sec-dashboard" class="secao" style="display:none">
     <div class="card">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
@@ -233,7 +222,6 @@ footer{text-align:center;padding:12px;color:var(--cinza);font-size:11px}
     </div>
   </div>
 
-  <!-- CADASTRAR -->
   <div id="sec-cadastrar" class="secao" style="display:none">
     <div class="card">
       <div class="sec-titulo">Cadastrar Paciente</div>
@@ -251,7 +239,6 @@ footer{text-align:center;padding:12px;color:var(--cinza);font-size:11px}
     </div>
   </div>
 
-  <!-- FICHA -->
   <div id="sec-ficha" class="secao" style="display:none">
     <div class="card">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px">
@@ -283,10 +270,27 @@ footer{text-align:center;padding:12px;color:var(--cinza);font-size:11px}
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-<script>
-var DB = JSON.parse(localStorage.getItem('ansiedade_db')||'{}');
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+import { getFirestore, doc, getDoc, setDoc, collection, getDocs, deleteDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBLfMVgSHSUAIlMtLshWBCz3U99-vME3KU",
+  authDomain: "gestao-da-ansiedade.firebaseapp.com",
+  projectId: "gestao-da-ansiedade",
+  storageBucket: "gestao-da-ansiedade.firebasestorage.app",
+  messagingSenderId: "1099391202299",
+  appId: "1:1099391202299:web:97b6dcca3af4421732515e",
+  measurementId: "G-L6RRJZL24B"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// ===== ESTADO =====
+var DB = {};
 var usuario='', perfil='', pacAtivo='';
-var chartPac=null, chartPsi=null;
+var chartPac=null, chartPsi=null, chartRodaHoje=null, chartRodaComp=null;
 var vozAlvo='', vozTxt='', recognizer=null;
 var pergAtual=0, respostas={};
 var nivelSel=0;
@@ -298,7 +302,6 @@ var nivelDesc={
   7:'Um pouco estressado, dificuldade de concentrar.',8:'Irritado. Inquieto, com falta de ar.',
   9:'Tenso. Com energia baixa e vontade de chorar.',10:'Muito estressado, em pânico, aflito.'
 };
-
 var tecnicas=[
   {id:'resp',label:'Respiração Relaxada',desc:'Inspirar → Pausar → Expirar por 2 min'},
   {id:'visao',label:'Visão Periférica',desc:'Mover os olhos da direita para a esquerda'},
@@ -312,7 +315,6 @@ var outras=[
   {id:'alongamento',label:'Alongamento',desc:'Esticar o corpo e respirar fundo'},
   {id:'agua',label:'Hidratação',desc:'Beber água com consciência e presença'}
 ];
-
 var perguntas=[
   {texto:'Qual situação está me deixando ansioso(a) agora?',ph:'Descreva a situação com detalhes...'},
   {texto:'O que está passando na minha cabeça? Qual é o meu pensamento ansioso?',ph:'Escreva o pensamento exatamente como aparece...'},
@@ -323,64 +325,69 @@ var perguntas=[
   {texto:'Existe uma forma mais útil e equilibrada de pensar sobre essa situação?',ph:'Um pensamento alternativo mais realista...'},
   {texto:'Preocupar-me com isso está me ajudando ou me machucando?',ph:'Reflita honestamente sobre o impacto dessa preocupação...'}
 ];
-
-var areas=[
-  {id:'interior',titulo:'Cuidado Interior',desc:'Meditação, oração, momentos de silêncio, conexão consigo mesmo, leitura reflexiva.'},
-  {id:'familiar',titulo:'Vida Familiar',desc:'Tempo de qualidade com família, conversas, demonstrações de afeto, cuidado mútuo.'},
-  {id:'carreira',titulo:'Carreira',desc:'Produtividade, aprendizado, metas cumpridas, colaboração no trabalho ou estudos.'},
-  {id:'social',titulo:'Vida Social',desc:'Encontros com amigos, ligações afetivas, momentos de lazer e conexão social.'},
-  {id:'qualidade',titulo:'Qualidade de Vida',desc:'Sono de qualidade, alimentação saudável, lazer, equilíbrio entre trabalho e descanso.'},
-  {id:'saudavel',titulo:'Vida Saudável',desc:'Exercício físico, hidratação, cuidados com o corpo, hábitos que fortalecem a saúde.'}
+var areasRoda=[
+  {id:'interior',label:'Cuidado Interior',desc:'Como está sua vida interior? Você tem momentos de silêncio, meditação, oração ou reflexão? Sente conexão consigo mesmo e com seus valores?'},
+  {id:'familiar',label:'Vida Familiar',desc:'Como são suas relações com família? Você se sente próximo(a), acolhido(a) e presente? Há diálogo, afeto e tempo de qualidade com quem ama?'},
+  {id:'carreira',label:'Carreira',desc:'Você se sente realizado(a) no trabalho ou estudos? Tem clareza de propósito, reconhecimento e equilíbrio entre esforço e resultado?'},
+  {id:'social',label:'Vida Social',desc:'Como estão suas amizades e conexões sociais? Você tem pessoas com quem contar, momentos de lazer e pertencimento a grupos que importam para você?'},
+  {id:'qualidade',label:'Qualidade de Vida',desc:'Você está dormindo bem, se alimentando com cuidado e tendo tempo para descanso e lazer? Sente equilíbrio entre obrigações e prazer?'},
+  {id:'saudavel',label:'Vida Saudável',desc:'Como está seu corpo? Você pratica alguma atividade física, cuida da saúde preventivamente e mantém hábitos que fortalecem seu bem-estar físico?'}
 ];
 var diasL=['S','T','Q','Q','S','S','D'];
+var coresComp=['rgba(123,0,180,.8)','rgba(47,133,90,.8)','rgba(192,86,33,.8)'];
 
-// demo
-if(!DB['luis rodrigues']){DB['luis rodrigues']={registros:[],trackAtiv:{},trackDias:{},pensamentos:[],rodas:[],estrategias:[],obs:'',cadastro:'2026-05-02'};}
-// limpa qualquer outro paciente exceto luis rodrigues
-var keysDB=Object.keys(DB);
-for(var ki=0;ki<keysDB.length;ki++){if(keysDB[ki]!=='luis rodrigues')delete DB[keysDB[ki]];}
-salvarDB();
+// ===== FIREBASE =====
+async function carregarTodos(){
+  try{
+    var snap=await getDocs(collection(db,'pacientes'));
+    snap.forEach(function(d){DB[d.id]=d.data();});
+  }catch(e){console.error(e);}
+}
 
-// LOGIN
-function togglePsi(){
+async function salvarPac(nome){
+  try{
+    await setDoc(doc(db,'pacientes',nome),DB[nome]);
+  }catch(e){toast('Erro ao salvar. Verifique a conexão.');console.error(e);}
+}
+
+async function excluirPacFirebase(nome){
+  try{await deleteDoc(doc(db,'pacientes',nome));}catch(e){console.error(e);}
+}
+
+// ===== LOGIN =====
+window.togglePsi=function(){
   var el=document.getElementById('areaPsi');
   el.style.display=el.style.display==='flex'?'none':'flex';
-}
-function autoNome(val){
+};
+
+window.autoNome=function(val){
   var box=document.getElementById('autoBox');
   if(val.length<3){box.style.display='none';return;}
-  var matches=[];
-  var keys=Object.keys(DB);
-  for(var i=0;i<keys.length;i++){
-    if(keys[i].indexOf(val.toLowerCase())!==-1){matches.push(keys[i]);}
-  }
+  var matches=Object.keys(DB).filter(function(n){return n.indexOf(val.toLowerCase())!==-1;});
   if(!matches.length){box.style.display='none';return;}
   box.innerHTML='';
-  for(var j=0;j<matches.length;j++){
-    var nome=matches[j];
+  matches.forEach(function(nome){
     var item=document.createElement('div');
     item.className='autocomplete-item';
     item.textContent=cap(nome);
-    (function(n){
-      item.onclick=function(){
-        document.getElementById('nomePac').value=cap(n);
-        document.getElementById('autoBox').style.display='none';
-      };
-    })(nome);
+    item.onclick=function(){document.getElementById('nomePac').value=cap(nome);box.style.display='none';};
     box.appendChild(item);
-  }
+  });
   box.style.display='block';
-}
-function entrarPac(){
+};
+
+window.entrarPac=function(){
   var n=document.getElementById('nomePac').value.trim();
   if(!n){toast('Digite seu nome');return;}
   if(!DB[n.toLowerCase()]){toast('Nome não encontrado. Solicite à Dra. Lucia.');return;}
   usuario=n;perfil='pac';abrirApp();
-}
-function entrarPsi(){
+};
+
+window.entrarPsi=function(){
   if(document.getElementById('senhaPsi').value!=='1234'){toast('Senha incorreta');return;}
   usuario='psicologa';perfil='psi';abrirApp();
-}
+};
+
 function abrirApp(){
   document.getElementById('telaLogin').style.display='none';
   document.getElementById('telaApp').style.display='block';
@@ -396,39 +403,36 @@ function abrirApp(){
     renderNivel();renderTracking();renderPensamentos();renderRotina();renderChartPac();
   }
 }
-function sair(){location.reload();}
 
-// TABS
-function goTab(id,btn){
+window.sair=function(){location.reload();};
+
+// ===== TABS =====
+window.goTab=function(id,btn){
   document.querySelectorAll('#tabsPac .tab').forEach(function(t){t.classList.remove('ativo');});
   btn.classList.add('ativo');
-  var secs=['estresse','tracking','pensamentos','rotina'];
-  for(var i=0;i<secs.length;i++){
-    var el=document.getElementById('sec-'+secs[i]);
-    if(el){el.classList.remove('ativo');el.style.display='none';}
-  }
+  ['estresse','tracking','pensamentos','rotina'].forEach(function(s){
+    var el=document.getElementById('sec-'+s);if(el){el.classList.remove('ativo');el.style.display='none';}
+  });
   document.getElementById('sec-'+id).classList.add('ativo');
   document.getElementById('sec-'+id).style.display='block';
-}
-function goTabPsi(id,btn){
+};
+
+window.goTabPsi=function(id,btn){
   document.querySelectorAll('#tabsPsi .tab').forEach(function(t){t.classList.remove('ativo');});
   if(btn)btn.classList.add('ativo');
-  var secs=['dashboard','cadastrar','ficha'];
-  for(var i=0;i<secs.length;i++){
-    var el=document.getElementById('sec-'+secs[i]);
-    if(el){el.classList.remove('ativo');el.style.display='none';}
-  }
+  ['dashboard','cadastrar','ficha'].forEach(function(s){
+    var el=document.getElementById('sec-'+s);if(el){el.classList.remove('ativo');el.style.display='none';}
+  });
   document.getElementById('sec-'+id).classList.add('ativo');
   document.getElementById('sec-'+id).style.display='block';
   if(id==='dashboard')renderDashboard();
-}
+};
 
-// NIVEL
+// ===== NIVEL =====
 function renderNivel(){
   var g=document.getElementById('nivelGrid');g.innerHTML='';
   for(var i=1;i<=10;i++){
-    var b=document.createElement('div');
-    b.className='nivel-btn';
+    var b=document.createElement('div');b.className='nivel-btn';
     b.innerHTML='<div class="nivel-num n'+i+'">'+i+'</div><div class="nivel-desc">'+nivelDesc[i].split('.')[0].substring(0,22)+'</div>';
     (function(n){b.onclick=function(){selNivel(n);};})(i);
     g.appendChild(b);
@@ -436,252 +440,185 @@ function renderNivel(){
 }
 function selNivel(n){
   nivelSel=n;
-  var btns=document.querySelectorAll('.nivel-btn');
-  for(var i=0;i<btns.length;i++){btns[i].classList.toggle('sel',i===n-1);}
-  var el=document.getElementById('nivelInfo');
-  el.textContent='Nível '+n+': '+nivelDesc[n];
-  el.style.display='block';
+  document.querySelectorAll('.nivel-btn').forEach(function(b,i){b.classList.toggle('sel',i===n-1);});
+  var el=document.getElementById('nivelInfo');el.textContent='Nível '+n+': '+nivelDesc[n];el.style.display='block';
 }
-function salvarNivel(){
+window.salvarNivel=async function(){
   if(!nivelSel){toast('Selecione um nível');return;}
-  var pac=usuario.toLowerCase();
-  getPac(pac).registros.push({data:hoje(),nivel:nivelSel,obs:gv('nivelObs')});
-  salvarDB();renderChartPac();
-  document.getElementById('nivelObs').value='';
-  nivelSel=0;
+  var pac=usuario.toLowerCase();getPac(pac).registros.push({data:hoje(),nivel:nivelSel,obs:gv('nivelObs')});
+  await salvarPac(pac);renderChartPac();
+  document.getElementById('nivelObs').value='';nivelSel=0;
   document.querySelectorAll('.nivel-btn').forEach(function(b){b.classList.remove('sel');});
   document.getElementById('nivelInfo').style.display='none';
   toast('Registro salvo!');
-}
+};
 function renderChartPac(){
-  var regs=getPac(usuario.toLowerCase()).registros||[];
-  var ul=regs.slice(-14);
+  var regs=getPac(usuario.toLowerCase()).registros||[];var ul=regs.slice(-14);
   var ctx=document.getElementById('chartPac').getContext('2d');
   if(chartPac)chartPac.destroy();
   chartPac=new Chart(ctx,{type:'line',data:{labels:ul.map(function(r){return r.data.slice(5);}),datasets:[{label:'Estresse',data:ul.map(function(r){return r.nivel;}),borderColor:'#7B00B4',backgroundColor:'rgba(123,0,180,.1)',tension:.3,pointRadius:5,pointBackgroundColor:'#7B00B4'}]},options:{responsive:true,scales:{y:{min:1,max:10,ticks:{stepSize:1}}},plugins:{legend:{display:false}}}});
 }
 
-// TRACKING
+// ===== TRACKING =====
 function getSemana(offset){
-  var sem=[];var now=new Date();
-  var dow=now.getDay();
+  var sem=[];var now=new Date();var dow=now.getDay();
   var seg=new Date(now);seg.setDate(now.getDate()-((dow+6)%7)-(offset*7));
   for(var i=0;i<7;i++){var d=new Date(seg);d.setDate(seg.getDate()+i);sem.push(dtStr(d));}
   return sem;
 }
 function renderTracking(){
-  var pac=usuario.toLowerCase();
-  var p=getPac(pac);
-  var atv=p.trackAtiv||{};
-  var semAtual=getSemana(0);
-  var tabela=document.getElementById('trackTabela');
-  tabela.innerHTML='';
+  var pac=usuario.toLowerCase();var p=getPac(pac);var atv=p.trackAtiv||{};var semAtual=getSemana(0);
+  var tabela=document.getElementById('trackTabela');tabela.innerHTML='';
   var grupos=[{titulo:'Técnicas de relaxamento',itens:tecnicas},{titulo:'Outras atividades saudáveis',itens:outras}];
-  for(var g=0;g<grupos.length;g++){
-    var grp=grupos[g];
-    var grpDiv=document.createElement('div');
-    grpDiv.className='track-group';grpDiv.textContent=grp.titulo;tabela.appendChild(grpDiv);
+  grupos.forEach(function(grp){
+    var grpDiv=document.createElement('div');grpDiv.className='track-group';grpDiv.textContent=grp.titulo;tabela.appendChild(grpDiv);
     var tbl=document.createElement('table');tbl.className='track-table';
-    var thead='<thead><tr><th class="th-atv">Atividade</th>';
-    for(var d=0;d<diasL.length;d++){thead+='<th>'+diasL[d]+'</th>';}
-    thead+='</tr></thead>';
-    tbl.innerHTML=thead;
+    tbl.innerHTML='<thead><tr><th class="th-atv">Atividade</th>'+diasL.map(function(d){return'<th>'+d+'</th>';}).join('')+'</tr></thead>';
     var tbody=document.createElement('tbody');
-    for(var t=0;t<grp.itens.length;t++){
-      var item=grp.itens[t];
+    grp.itens.forEach(function(item){
       var tr=document.createElement('tr');
-      var tdA=document.createElement('td');tdA.className='td-atv';
-      tdA.innerHTML=item.label+'<small>'+item.desc+'</small>';
-      tr.appendChild(tdA);
-      for(var di=0;di<semAtual.length;di++){
-        var key=semAtual[di]+'_'+item.id;
-        var td=document.createElement('td');
-        var dot=document.createElement('div');
-        dot.className='t-dot'+(atv[key]?' ok':'');
-        dot.textContent=atv[key]?'✓':'';
-        (function(k,tid,data){
-          dot.onclick=function(){toggleAtv(tid,data);};
-        })(key,item.id,semAtual[di]);
+      var tdA=document.createElement('td');tdA.className='td-atv';tdA.innerHTML=item.label+'<small>'+item.desc+'</small>';tr.appendChild(tdA);
+      semAtual.forEach(function(data){
+        var key=data+'_'+item.id;var td=document.createElement('td');var dot=document.createElement('div');
+        dot.className='t-dot'+(atv[key]?' ok':'');dot.textContent=atv[key]?'✓':'';
+        (function(tid,d2){dot.onclick=function(){toggleAtv(tid,d2);};})(item.id,data);
         td.appendChild(dot);tr.appendChild(td);
-      }
+      });
       tbody.appendChild(tr);
-    }
+    });
     tbl.appendChild(tbody);tabela.appendChild(tbl);
-  }
-  // historico
+  });
   var hist=document.getElementById('trackHist');hist.innerHTML='';
   var tbl2=document.createElement('table');tbl2.className='track-table';
   tbl2.innerHTML='<thead><tr><th class="th-atv">Semana</th>'+diasL.map(function(d){return'<th>'+d+'</th>';}).join('')+'</tr></thead>';
-  var tb2=document.createElement('tbody');
-  var trackDias=p.trackDias||{};
+  var tb2=document.createElement('tbody');var trackDias=p.trackDias||{};
   for(var w=1;w<=3;w++){
-    var sem=getSemana(w);
-    var tr2=document.createElement('tr');
-    var td0=document.createElement('td');td0.className='td-atv';
-    td0.textContent=sem[0].slice(5)+' — '+sem[6].slice(5);
-    tr2.appendChild(td0);
-    for(var di2=0;di2<sem.length;di2++){
-      var td2=document.createElement('td');
-      var dot2=document.createElement('div');
-      dot2.className='t-dot'+(trackDias[sem[di2]]?' ok':'');
-      dot2.textContent=trackDias[sem[di2]]?'✓':'';
-      td2.appendChild(dot2);tr2.appendChild(td2);
-    }
+    var sem=getSemana(w);var tr2=document.createElement('tr');
+    var td0=document.createElement('td');td0.className='td-atv';td0.textContent=sem[0].slice(5)+' — '+sem[6].slice(5);tr2.appendChild(td0);
+    sem.forEach(function(data){
+      var td=document.createElement('td');var dot=document.createElement('div');
+      dot.className='t-dot'+(trackDias[data]?' ok':'');dot.textContent=trackDias[data]?'✓':'';
+      td.appendChild(dot);tr2.appendChild(td);
+    });
     tb2.appendChild(tr2);
   }
   tbl2.appendChild(tb2);hist.appendChild(tbl2);
-  var seq=0,cur=new Date();
-  while(trackDias[dtStr(cur)]){seq++;cur.setDate(cur.getDate()-1);}
+  var seq=0,cur=new Date();while(trackDias[dtStr(cur)]){seq++;cur.setDate(cur.getDate()-1);}
   document.getElementById('seqBox').textContent='Sequência atual: '+seq+' dia'+(seq!==1?'s':'')+' 🔥';
 }
-function toggleAtv(id,data){
+async function toggleAtv(id,data){
   var pac=usuario.toLowerCase();var p=getPac(pac);
   if(!p.trackAtiv)p.trackAtiv={};if(!p.trackDias)p.trackDias={};
   var key=data+'_'+id;
   if(p.trackAtiv[key]){delete p.trackAtiv[key];}else{p.trackAtiv[key]=true;}
-  var temDia=false;
-  var ks=Object.keys(p.trackAtiv);
-  for(var i=0;i<ks.length;i++){if(ks[i].indexOf(data)===0){temDia=true;break;}}
+  var temDia=Object.keys(p.trackAtiv).some(function(k){return k.indexOf(data)===0;});
   if(temDia){p.trackDias[data]=true;}else{delete p.trackDias[data];}
   renderTracking();
 }
-function salvarTracking(){salvarDB();toast('Tracking salvo!');}
+window.salvarTracking=async function(){
+  await salvarPac(usuario.toLowerCase());toast('Tracking salvo!');
+};
 
-// PENSAMENTOS
+// ===== PENSAMENTOS =====
 function renderPensamentos(){pergAtual=0;respostas={};renderPerg();}
 function renderPerg(){
-  var p=perguntas[pergAtual];
-  var id='pr'+pergAtual;
-  var dots='';
-  for(var i=0;i<perguntas.length;i++){dots+='<div class="perg-dot'+(i===pergAtual?' ativo':'')+'"></div>';}
-  var html='<div class="perg-card">';
-  html+='<div class="perg-num">Pergunta '+(pergAtual+1)+' de '+perguntas.length+'</div>';
-  html+='<div class="perg-texto">'+p.texto+'</div>';
-  html+='<div class="campo-voz"><textarea id="'+id+'" rows="3" placeholder="'+p.ph+'">'+(respostas[pergAtual]||'')+'</textarea>';
-  html+='<button class="btn-mic" id="mic-'+id+'" onclick="iniciarVoz(\''+id+'\')">🎙</button></div>';
-  html+='<div class="perg-nav">';
-  html+='<button class="btn btn-lilas btn-sm" onclick="navPerg(-1)"'+(pergAtual===0?' disabled style="opacity:.4"':'')+'>← Anterior</button>';
-  html+='<div class="perg-dots">'+dots+'</div>';
+  var p=perguntas[pergAtual];var id='pr'+pergAtual;
+  var dots='';for(var i=0;i<perguntas.length;i++){dots+='<div class="perg-dot'+(i===pergAtual?' ativo':'')+'"></div>';}
+  var html='<div class="perg-card">'
+    +'<div class="perg-num">Pergunta '+(pergAtual+1)+' de '+perguntas.length+'</div>'
+    +'<div class="perg-texto">'+p.texto+'</div>'
+    +'<div class="campo-voz"><textarea id="'+id+'" rows="3" placeholder="'+p.ph+'">'+(respostas[pergAtual]||'')+'</textarea>'
+    +'<button class="btn-mic" id="mic-'+id+'" onclick="iniciarVoz(\''+id+'\')">🎙</button></div>'
+    +'<div class="perg-nav">'
+    +'<button class="btn btn-lilas btn-sm" onclick="navPerg(-1)"'+(pergAtual===0?' disabled style="opacity:.4"':'')+'>← Anterior</button>'
+    +'<div class="perg-dots">'+dots+'</div>';
   if(pergAtual<perguntas.length-1){html+='<button class="btn btn-roxo btn-sm" onclick="navPerg(1)">Próxima →</button>';}
   else{html+='<button class="btn btn-verde btn-sm" onclick="salvarPens()">Salvar ✓</button>';}
   html+='</div></div>';
   document.getElementById('pergBox').innerHTML=html;
 }
-function navPerg(dir){
+window.navPerg=function(dir){
   respostas[pergAtual]=document.getElementById('pr'+pergAtual).value;
-  pergAtual+=dir;
-  if(pergAtual<0)pergAtual=0;
-  if(pergAtual>=perguntas.length)pergAtual=perguntas.length-1;
+  pergAtual+=dir;if(pergAtual<0)pergAtual=0;if(pergAtual>=perguntas.length)pergAtual=perguntas.length-1;
   renderPerg();
-}
-function salvarPens(){
+};
+window.salvarPens=async function(){
   respostas[pergAtual]=document.getElementById('pr'+pergAtual).value;
   var pac=usuario.toLowerCase();var reg={data:hoje()};
   for(var i=0;i<perguntas.length;i++){reg['p'+i]=respostas[i]||'';}
   getPac(pac).pensamentos.push(reg);
-  salvarDB();toast('Respostas salvas!');
+  await salvarPac(pac);toast('Respostas salvas!');
   pergAtual=0;respostas={};renderPerg();
-}
+};
 
-// ROTINA
-var chartRodaHoje=null, chartRodaComp=null;
-var areasRoda=[
-  {id:'interior',label:'Cuidado Interior',desc:'Como está sua vida interior? Você tem momentos de silêncio, meditação, oração ou reflexão? Sente conexão consigo mesmo e com seus valores?'},
-  {id:'familiar',label:'Vida Familiar',desc:'Como são suas relações com família? Você se sente próximo(a), acolhido(a) e presente? Há diálogo, afeto e tempo de qualidade com quem ama?'},
-  {id:'carreira',label:'Carreira',desc:'Você se sente realizado(a) no trabalho ou estudos? Tem clareza de propósito, reconhecimento e equilíbrio entre esforço e resultado?'},
-  {id:'social',label:'Vida Social',desc:'Como estão suas amizades e conexões sociais? Você tem pessoas com quem contar, momentos de lazer e pertencimento a grupos que importam para você?'},
-  {id:'qualidade',label:'Qualidade de Vida',desc:'Você está dormindo bem, se alimentando com cuidado e tendo tempo para descanso e lazer? Sente equilíbrio entre obrigações e prazer?'},
-  {id:'saudavel',label:'Vida Saudável',desc:'Como está seu corpo? Você pratica alguma atividade física, cuida da saúde preventivamente e mantém hábitos que fortalecem seu bem-estar físico?'}
-];
-var coresComp=['rgba(123,0,180,.8)','rgba(47,133,90,.8)','rgba(192,86,33,.8)'];
-
+// ===== RODA DA VIDA =====
 function renderRotina(){
-  // renderiza sliders
   var c=document.getElementById('rodaSliders');c.innerHTML='';
-  var pac=usuario.toLowerCase();
-  var rodas=getPac(pac).rodas||[];
-  var ultima=rodas.length?rodas[rodas.length-1]:null;
-  for(var i=0;i<areasRoda.length;i++){
-    var area=areasRoda[i];
+  var pac=usuario.toLowerCase();var rodas=getPac(pac).rodas||[];var ultima=rodas.length?rodas[rodas.length-1]:null;
+  areasRoda.forEach(function(area){
     var val=ultima?ultima[area.id]:5;
     var div=document.createElement('div');div.className='roda-slider';
     div.innerHTML='<div class="roda-area-nome">'+area.label+'</div>'
       +'<input type="range" min="0" max="10" step="1" value="'+val+'" id="sl_'+area.id+'" oninput="atualizarNota(\''+area.id+'\')">'
       +'<div class="roda-nota" id="nt_'+area.id+'">'+val+'</div>';
     c.appendChild(div);
-    var desc=document.createElement('div');
-    desc.style.cssText='font-size:11px;color:var(--cinza);padding:4px 0 10px;line-height:1.5;border-bottom:1px solid var(--borda);margin-bottom:2px';
-    desc.textContent=area.desc;
-    c.appendChild(desc);
-  }
-  renderChartRodaHoje();
-  renderChartRodaComp();
+    var desc=document.createElement('div');desc.className='roda-desc';desc.textContent=area.desc;c.appendChild(desc);
+  });
+  renderChartRodaHoje();renderChartRodaComp();
 }
-
-function atualizarNota(id){
-  var val=document.getElementById('sl_'+id).value;
-  document.getElementById('nt_'+id).textContent=val;
+window.atualizarNota=function(id){
+  document.getElementById('nt_'+id).textContent=document.getElementById('sl_'+id).value;
   renderChartRodaHoje();
-}
-
+};
 function getNotasAtuais(){
   var notas={};
-  for(var i=0;i<areasRoda.length;i++){
-    var el=document.getElementById('sl_'+areasRoda[i].id);
-    notas[areasRoda[i].id]=el?parseInt(el.value):0;
-  }
+  areasRoda.forEach(function(a){var el=document.getElementById('sl_'+a.id);notas[a.id]=el?parseInt(el.value):0;});
   return notas;
 }
-
 function renderChartRodaHoje(){
   var notas=getNotasAtuais();
-  var dados=areasRoda.map(function(a){return notas[a.id]||0;});
-  var labels=areasRoda.map(function(a){return a.label;});
   var ctx=document.getElementById('chartRodaHoje').getContext('2d');
   if(chartRodaHoje)chartRodaHoje.destroy();
-  chartRodaHoje=new Chart(ctx,{type:'radar',data:{labels:labels,datasets:[{label:'Agora',data:dados,backgroundColor:'rgba(123,0,180,.15)',borderColor:'#7B00B4',borderWidth:2,pointBackgroundColor:'#7B00B4',pointRadius:4}]},options:{responsive:true,scales:{r:{min:0,max:10,ticks:{stepSize:2,font:{size:10}},pointLabels:{font:{size:11}}}},plugins:{legend:{display:false}}}});
+  chartRodaHoje=new Chart(ctx,{type:'radar',data:{labels:areasRoda.map(function(a){return a.label;}),datasets:[{label:'Agora',data:areasRoda.map(function(a){return notas[a.id]||0;}),backgroundColor:'rgba(123,0,180,.15)',borderColor:'#7B00B4',borderWidth:2,pointBackgroundColor:'#7B00B4',pointRadius:4}]},options:{responsive:true,scales:{r:{min:0,max:10,ticks:{stepSize:2,font:{size:10}},pointLabels:{font:{size:11}}}},plugins:{legend:{display:false}}}});
 }
-
 function renderChartRodaComp(){
-  var pac=usuario.toLowerCase();
-  var rodas=(getPac(pac).rodas||[]).slice(-3);
+  var pac=usuario.toLowerCase();var rodas=(getPac(pac).rodas||[]).slice(-3);
   if(!rodas.length){if(chartRodaComp)chartRodaComp.destroy();return;}
-  var labels=areasRoda.map(function(a){return a.label;});
-  var datasets=rodas.map(function(r,i){
-    return{label:r.data,data:areasRoda.map(function(a){return r[a.id]||0;}),backgroundColor:coresComp[i].replace('.8','.1'),borderColor:coresComp[i],borderWidth:2,pointBackgroundColor:coresComp[i],pointRadius:3};
-  });
+  var datasets=rodas.map(function(r,i){return{label:r.data,data:areasRoda.map(function(a){return r[a.id]||0;}),backgroundColor:coresComp[i].replace('.8','.1'),borderColor:coresComp[i],borderWidth:2,pointBackgroundColor:coresComp[i],pointRadius:3};});
   var ctx=document.getElementById('chartRodaComp').getContext('2d');
   if(chartRodaComp)chartRodaComp.destroy();
-  chartRodaComp=new Chart(ctx,{type:'radar',data:{labels:labels,datasets:datasets},options:{responsive:true,scales:{r:{min:0,max:10,ticks:{stepSize:2,font:{size:10}},pointLabels:{font:{size:11}}}},plugins:{legend:{display:true,labels:{font:{size:11}}}}}});
+  chartRodaComp=new Chart(ctx,{type:'radar',data:{labels:areasRoda.map(function(a){return a.label;}),datasets:datasets},options:{responsive:true,scales:{r:{min:0,max:10,ticks:{stepSize:2,font:{size:10}},pointLabels:{font:{size:11}}}},plugins:{legend:{display:true,labels:{font:{size:11}}}}}});
 }
+window.salvarRoda=async function(){
+  var pac=usuario.toLowerCase();var p=getPac(pac);if(!p.rodas)p.rodas=[];
+  var reg={data:hoje()};var notas=getNotasAtuais();for(var id in notas){reg[id]=notas[id];}
+  p.rodas.push(reg);await salvarPac(pac);toast('Roda da Vida salva!');renderChartRodaComp();
+};
 
-function salvarRoda(){
-  var pac=usuario.toLowerCase();var p=getPac(pac);
-  if(!p.rodas)p.rodas=[];
-  var reg={data:hoje()};
-  var notas=getNotasAtuais();
-  for(var id in notas){reg[id]=notas[id];}
-  p.rodas.push(reg);
-  salvarDB();toast('Roda da Vida salva!');
-  renderChartRodaComp();
-}
-
-// DASHBOARD
+// ===== DASHBOARD =====
 function renderDashboard(){
   var c=document.getElementById('listaPac');c.innerHTML='';
   var nomes=Object.keys(DB);
   if(!nomes.length){c.innerHTML='<p style="color:var(--cinza);text-align:center;padding:20px">Nenhum paciente cadastrado.</p>';return;}
-  for(var i=0;i<nomes.length;i++){
-    var nome=nomes[i];var pac=DB[nome];
-    var regs=pac.registros||[];var ul=regs.length?regs[regs.length-1]:null;
+  nomes.forEach(function(nome){
+    var pac=DB[nome];var regs=pac.registros||[];var ul=regs.length?regs[regs.length-1]:null;
     var div=document.createElement('div');div.className='pac-card';
     var badge='';
     if(ul){var n=ul.nivel;badge=n<=3?'<span class="badge badge-v">Nível '+n+'</span>':n<=6?'<span class="badge badge-a">Nível '+n+'</span>':'<span class="badge badge-r">Nível '+n+'</span>';}
-    div.innerHTML='<div style="display:flex;justify-content:space-between;align-items:center"><div class="pac-nome">'+cap(nome)+'</div><div style="display:flex;gap:6px;align-items:center">'+badge+'<button class="btn btn-lilas btn-sm" onclick="excluirPac(\''+nome+'\',event)">Excluir</button></div></div><div class="pac-info">'+(ul?'Último: '+ul.data+' — '+nivelDesc[ul.nivel]:'Sem registros ainda')+'</div>';
+    div.innerHTML='<div style="display:flex;justify-content:space-between;align-items:center">'
+      +'<div class="pac-nome">'+cap(nome)+'</div>'
+      +'<div style="display:flex;gap:6px;align-items:center">'+badge
+      +'<button class="btn btn-lilas btn-sm" onclick="excluirPac(\''+nome+'\',event)">Excluir</button></div></div>'
+      +'<div class="pac-info">'+(ul?'Último: '+ul.data+' — '+nivelDesc[ul.nivel]:'Sem registros ainda')+'</div>';
     (function(nm){div.onclick=function(){verFicha(nm);};})(nome);
     c.appendChild(div);
-  }
+  });
 }
+window.excluirPac=async function(nome,event){
+  event.stopPropagation();
+  if(!confirm('Excluir '+cap(nome)+'? Todos os dados serão apagados.'))return;
+  await excluirPacFirebase(nome);delete DB[nome];renderDashboard();toast(cap(nome)+' excluído.');
+};
 function verFicha(nome){
   pacAtivo=nome;
   document.getElementById('tabFicha').style.display='inline-block';
@@ -700,92 +637,125 @@ function verFicha(nome){
     html+='<div style="font-size:13px;font-weight:700;color:var(--roxo-esc);margin-bottom:8px">Último registro de pensamentos ('+r.data+')</div>';
     for(var i=0;i<perguntas.length;i++){if(r['p'+i]){html+='<div class="perg-card" style="margin-bottom:8px"><div class="perg-num">'+perguntas[i].texto+'</div><div style="font-size:13px;margin-top:4px">'+r['p'+i]+'</div></div>';}}
   }
-  var est=pac.estrategias||[];
-  if(est.length){html+='<div class="sep"></div><div style="font-size:13px;font-weight:700;color:var(--roxo-esc);margin-bottom:8px">Estratégias pessoais</div>';for(var j=0;j<est.length;j++){html+='<div class="estrat-item">'+est[j]+'</div>';}}
+  var rodas=pac.rodas||[];
+  if(rodas.length){
+    var ult=rodas[rodas.length-1];
+    html+='<div class="sep"></div><div style="font-size:13px;font-weight:700;color:var(--roxo-esc);margin-bottom:8px">Última Roda da Vida ('+ult.data+')</div>';
+    areasRoda.forEach(function(a){html+='<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--borda);font-size:13px"><span>'+a.label+'</span><strong style="color:var(--roxo)">'+( ult[a.id]||0)+'/10</strong></div>';});
+  }
   if(!html)html='<p style="color:var(--cinza)">Sem registros detalhados ainda.</p>';
   document.getElementById('fichaConteudo').innerHTML=html;
 }
-function cadastrar(){
+window.cadastrar=async function(){
   var nome=document.getElementById('cadNome').value.trim().toLowerCase();
   if(!nome){toast('Informe o nome');return;}
   if(DB[nome]){toast('Paciente já cadastrado');return;}
-  DB[nome]={registros:[],trackAtiv:{},trackDias:{},pensamentos:[],rotina:{},estrategias:[],obs:document.getElementById('cadObs').value,cadastro:hoje()};
-  salvarDB();toast('Paciente cadastrado!');
+  DB[nome]={registros:[],trackAtiv:{},trackDias:{},pensamentos:[],rodas:[],obs:document.getElementById('cadObs').value,cadastro:hoje()};
+  await salvarPac(nome);toast('Paciente cadastrado!');
   document.getElementById('cadNome').value='';document.getElementById('cadObs').value='';
   goTabPsi('dashboard',document.querySelector('#tabsPsi .tab'));
-}
+};
 
-// PDF
-function pdfPac(){
+// ===== PDF =====
+window.pdfPac=function(){
   var nome=pacAtivo;var pac=DB[nome];
   var html=pdfHdr()+'<div class="c"><h2>Paciente: '+cap(nome)+'</h2><h2>Histórico de Estresse</h2><table>';
-  var regs=pac.registros||[];
-  for(var i=0;i<regs.length;i++){html+='<tr><td class="l">'+regs[i].data+'</td><td>Nível '+regs[i].nivel+' — '+nivelDesc[regs[i].nivel]+'</td><td>'+regs[i].obs+'</td></tr>';}
+  (pac.registros||[]).forEach(function(r){html+='<tr><td class="l">'+r.data+'</td><td>Nível '+r.nivel+' — '+nivelDesc[r.nivel]+'</td><td>'+r.obs+'</td></tr>';});
   html+='</table>';
   var pens=pac.pensamentos||[];
   if(pens.length){
     html+='<h2>Registros de Pensamentos</h2>';
-    for(var j=0;j<pens.length;j++){
-      html+='<p style="font-weight:700;color:#7B00B4;margin:10px 0 4px">'+pens[j].data+'</p>';
-      for(var k=0;k<perguntas.length;k++){if(pens[j]['p'+k]){html+='<p><strong>'+perguntas[k].texto+'</strong><br>'+pens[j]['p'+k]+'</p>';}}
-    }
+    pens.forEach(function(r){
+      html+='<p style="font-weight:700;color:#7B00B4;margin:10px 0 4px">'+r.data+'</p>';
+      for(var k=0;k<perguntas.length;k++){if(r['p'+k]){html+='<p><strong>'+perguntas[k].texto+'</strong><br>'+r['p'+k]+'</p>';}}
+    });
   }
-  var est=pac.estrategias||[];
-  if(est.length){html+='<h2>Estratégias Pessoais</h2><ul>';for(var e=0;e<est.length;e++){html+='<li>'+est[e]+'</li>';}html+='</ul>';}
+  var rodas=pac.rodas||[];
+  if(rodas.length){
+    html+='<h2>Roda da Vida</h2>';
+    rodas.forEach(function(rod){
+      html+='<p style="font-weight:700;color:#7B00B4;margin:8px 0 4px">'+rod.data+'</p><table>';
+      areasRoda.forEach(function(a){html+='<tr><td class="l">'+a.label+'</td><td>'+( rod[a.id]||0)+'/10</td></tr>';});
+      html+='</table>';
+    });
+  }
   html+=pdfFtr();pdfAbrir(html);
-}
-function pdfGeral(){
+};
+window.pdfGeral=function(){
   var html=pdfHdr()+'<div class="c"><h2>Relatório Geral</h2><table>';
-  var nomes=Object.keys(DB);
-  for(var i=0;i<nomes.length;i++){
-    var nome=nomes[i];var pac=DB[nome];var regs=pac.registros||[];var ul=regs.length?regs[regs.length-1]:null;
+  Object.keys(DB).forEach(function(nome){
+    var pac=DB[nome];var regs=pac.registros||[];var ul=regs.length?regs[regs.length-1]:null;
     html+='<tr><td class="l">'+cap(nome)+'</td><td>'+(ul?'Nível '+ul.nivel+' em '+ul.data:'Sem registros')+'</td></tr>';
-  }
+  });
   html+='</table>'+pdfFtr();pdfAbrir(html);
-}
-function pdfHdr(){return'<html><head><meta charset="UTF-8"><style>body{font-family:Arial,sans-serif;font-size:12px;color:#2d2d2d;margin:0}.hdr{background:#7B00B4;color:white;padding:20px 30px}.nm{font-size:22px;font-style:italic;font-family:Georgia,serif}h2{color:#5a007a;font-size:13px;margin:14px 0 6px;border-bottom:2px solid #e9d5f7;padding-bottom:4px}table{width:100%;border-collapse:collapse}td{padding:5px 8px;border-bottom:1px solid #f0e0ff}.l{font-weight:700;color:#5a007a;width:30%}.c{padding:20px}</style></head><body><div class="hdr"><div style="font-size:10px;opacity:.8">Dra</div><div class="nm">Lucia Kratz</div><div style="font-size:11px;opacity:.85">Psicóloga · CRP 09/20590</div></div>';}
+};
+function pdfHdr(){return'<html><head><meta charset="UTF-8"><style>body{font-family:Arial,sans-serif;font-size:12px;color:#2d2d2d;margin:0}.hdr{background:#7B00B4;color:white;padding:20px 30px}.nm{font-size:22px;font-style:italic;font-family:Georgia,serif}h2{color:#5a007a;font-size:13px;margin:14px 0 6px;border-bottom:2px solid #e9d5f7;padding-bottom:4px}table{width:100%;border-collapse:collapse}td{padding:5px 8px;border-bottom:1px solid #f0e0ff}.l{font-weight:700;color:#5a007a;width:35%}.c{padding:20px}</style></head><body><div class="hdr"><div style="font-size:10px;opacity:.8">Dra</div><div class="nm">Lucia Kratz</div><div style="font-size:11px;opacity:.85">Psicóloga · CRP 09/20590</div></div>';}
 function pdfFtr(){return'<div style="text-align:center;color:#9b6bb5;font-size:10px;padding:12px;border-top:1px solid #e9d5f7">Gerado em '+hoje()+' · Dra. Lucia Kratz · CRP 09/20590</div></div></body></html>';}
 function pdfAbrir(html){var w=window.open('','_blank');w.document.write(html);w.document.close();w.print();}
 
-// VOZ
-function iniciarVoz(alvoId){
+// ===== VOZ =====
+window.iniciarVoz=function(alvoId){
   if(!('webkitSpeechRecognition' in window||'SpeechRecognition' in window)){toast('Voz não suportada neste navegador');return;}
   var R=window.SpeechRecognition||window.webkitSpeechRecognition;
   recognizer=new R();recognizer.lang='pt-BR';recognizer.continuous=false;recognizer.interimResults=false;
-  vozAlvo=alvoId;
-  var btn=document.getElementById('mic-'+alvoId);if(btn)btn.classList.add('ativo');
+  vozAlvo=alvoId;var btn=document.getElementById('mic-'+alvoId);if(btn)btn.classList.add('ativo');
   recognizer.onresult=function(e){
-    vozTxt=e.results[0][0].transcript;
-    if(btn)btn.classList.remove('ativo');
+    vozTxt=e.results[0][0].transcript;if(btn)btn.classList.remove('ativo');
     document.getElementById('modalTxt').textContent='"'+vozTxt+'"';
     document.getElementById('modalVoz').classList.add('show');
   };
   recognizer.onerror=function(){if(btn)btn.classList.remove('ativo');toast('Erro ao capturar voz');};
   recognizer.onend=function(){if(btn)btn.classList.remove('ativo');};
   recognizer.start();toast('Ouvindo...');
-}
-function confirmVoz(){
+};
+window.confirmVoz=function(){
   document.getElementById('modalVoz').classList.remove('show');
-  var el=document.getElementById(vozAlvo);
-  if(el){el.value=(el.value?el.value+' ':'')+vozTxt;}
-}
-function cancelVoz(){document.getElementById('modalVoz').classList.remove('show');}
+  var el=document.getElementById(vozAlvo);if(el){el.value=(el.value?el.value+' ':'')+vozTxt;}
+};
+window.cancelVoz=function(){document.getElementById('modalVoz').classList.remove('show');};
 
-// UTILS
-function excluirPac(nome,event){
-  event.stopPropagation();
-  if(!confirm('Excluir '+cap(nome)+'? Todos os dados serão apagados.'))return;
-  delete DB[nome];salvarDB();renderDashboard();toast(cap(nome)+' excluído.');
+// ===== UTILS =====
+function getPac(nome){
+  if(!DB[nome])DB[nome]={registros:[],trackAtiv:{},trackDias:{},pensamentos:[],rodas:[],obs:'',cadastro:hoje()};
+  return DB[nome];
 }
-function getPac(nome){if(!DB[nome])DB[nome]={registros:[],trackAtiv:{},trackDias:{},pensamentos:[],rotina:{},estrategias:[]};return DB[nome];}
-function salvarDB(){localStorage.setItem('ansiedade_db',JSON.stringify(DB));}
 function hoje(){return new Date().toISOString().slice(0,10);}
 function dtStr(d){return d.toISOString().slice(0,10);}
 function cap(s){return s?s.charAt(0).toUpperCase()+s.slice(1):'';}
 function gv(id){return document.getElementById(id).value.trim();}
 function mostrar(id){document.getElementById(id).style.display='block';}
-function esconder(ids){for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el){el.style.display='none';el.classList.remove('ativo');}}}
+function esconder(ids){ids.forEach(function(id){var el=document.getElementById(id);if(el){el.style.display='none';el.classList.remove('ativo');}});}
 function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2500);}
+
+// ===== INIT =====
+document.getElementById('telaLogin').innerHTML='<div class="loading">Carregando...</div>';
+carregarTodos().then(function(){
+  document.getElementById('telaLogin').innerHTML=`
+  <div style="text-align:right;margin-top:10px;margin-bottom:4px">
+    <span onclick="togglePsi()" style="font-size:11px;color:var(--cinza);cursor:pointer;text-decoration:underline">Acesso restrito</span>
+  </div>
+  <div id="areaPsi" style="display:none;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--borda);border-radius:10px;padding:10px 14px;margin-bottom:10px">
+    <input type="password" id="senhaPsi" placeholder="Senha da psicóloga" style="flex:1;margin:0" onkeydown="if(event.key==='Enter')entrarPsi()">
+    <button class="btn btn-roxo btn-sm" onclick="entrarPsi()">Entrar</button>
+  </div>
+  <div class="card">
+    <div style="font-weight:700;color:var(--roxo-med);font-size:16px;margin-bottom:5px">Olá! 👋</div>
+    <div style="font-size:13px;color:var(--cinza);margin-bottom:14px">Digite seu nome para acessar seu acompanhamento.</div>
+    <input type="text" id="nomePac" placeholder="Seu nome" autocomplete="off" oninput="autoNome(this.value)" onkeydown="if(event.key==='Enter')entrarPac()">
+    <div class="autocomplete-box" id="autoBox"></div>
+    <div style="margin-top:12px"><button class="btn btn-roxo" style="width:100%" onclick="entrarPac()">Entrar</button></div>
+  </div>
+  <div style="margin-top:14px;background:#fdf4ff;border-left:4px solid var(--roxo);border-radius:0 10px 10px 0;padding:14px 16px">
+    <div style="font-size:13px;font-weight:700;color:var(--roxo-med);margin-bottom:6px">Instruções de Uso</div>
+    <div style="font-size:12px;color:#2d2d2d;line-height:1.6;margin-bottom:8px">Use este app no seu dia a dia para acompanhar sua saúde emocional. Não precisa preencher tudo de uma vez.</div>
+    <div style="font-size:12px;color:#2d2d2d;line-height:1.8">
+      <div><strong style="color:var(--roxo-esc)">Nível de Estresse:</strong> Avalie como está se sentindo e acompanhe sua evolução.</div>
+      <div><strong style="color:var(--roxo-esc)">Tracking:</strong> Marque as atividades de relaxamento que praticou em cada dia.</div>
+      <div><strong style="color:var(--roxo-esc)">Pensamentos:</strong> Reflita sobre seus pensamentos ansiosos com perguntas guiadas.</div>
+      <div><strong style="color:var(--roxo-esc)">Roda da Vida:</strong> Avalie seu nível de satisfação em cada área da sua vida.</div>
+    </div>
+  </div>`;
+});
 </script>
 </body>
 </html>
