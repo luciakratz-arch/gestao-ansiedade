@@ -8,14 +8,15 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',sans-serif;background:#f3eafc;color:#2d2d2d;font-size:14px;min-height:100vh}
 :root{--roxo:#7B00B4;--roxo-esc:#5a007a;--roxo-med:#3d0057;--borda:#e2d4f0;--cinza:#9b6bb5;--verde:#2f855a;--laranja:#c05621}
-header{background:var(--roxo);color:#fff;padding:16px 20px;box-shadow:0 4px 18px rgba(123,0,180,.35);display:flex;align-items:center;justify-content:space-between;position:relative}
-.h-esq .h-dra{font-size:10px;letter-spacing:2px;opacity:.8}
-.h-esq .h-nome{font-family:Georgia,serif;font-style:italic;font-size:26px;line-height:1.1}
-.h-esq .h-cargo{font-size:11px;letter-spacing:2px;opacity:.85;margin-top:2px}
-.h-esq .h-crp{font-size:11px;opacity:.7;margin-top:1px}
-.h-centro{position:absolute;left:50%;transform:translateX(-50%);text-align:center}
-.h-centro .h-sub{font-size:11px;letter-spacing:2px;opacity:.8;text-transform:uppercase;margin-bottom:2px}
-.h-centro .h-titulo{font-size:24px;font-weight:700;letter-spacing:1px;white-space:nowrap}
+header{background:var(--roxo);color:#fff;padding:12px 16px;box-shadow:0 4px 18px rgba(123,0,180,.35)}
+.h-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.h-esq .h-dra{font-size:9px;letter-spacing:2px;opacity:.8}
+.h-esq .h-nome{font-family:Georgia,serif;font-style:italic;font-size:18px;line-height:1.1}
+.h-esq .h-cargo{font-size:9px;letter-spacing:1px;opacity:.85}
+.h-esq .h-crp{font-size:9px;opacity:.7}
+.h-centro{text-align:center;flex:1}
+.h-centro .h-sub{font-size:9px;letter-spacing:1px;opacity:.8;text-transform:uppercase;margin-bottom:2px}
+.h-centro .h-titulo{font-size:18px;font-weight:700}
 .login-wrap{max-width:360px;margin:0 auto;padding:16px}
 .card{background:#fff;border-radius:14px;box-shadow:0 2px 12px rgba(123,0,180,.10);border:1.5px solid var(--borda);padding:20px}
 input,select,textarea{width:100%;padding:9px 12px;border:1.5px solid var(--borda);border-radius:9px;background:#fdf8ff;font-size:14px;color:#2d2d2d;font-family:'Segoe UI',sans-serif;outline:none}
@@ -99,15 +100,17 @@ footer{text-align:center;padding:12px;color:var(--cinza);font-size:11px}
 <body>
 
 <header>
-  <div class="h-esq">
-    <div class="h-dra">Dra</div>
-    <div class="h-nome">Lucia Kratz</div>
-    <div class="h-cargo">P s i c ó l o g a</div>
-    <div class="h-crp">CRP 09/20590</div>
-  </div>
-  <div class="h-centro">
-    <div class="h-sub">Ferramenta clínica</div>
-    <div class="h-titulo">Gestão da Ansiedade</div>
+  <div class="h-top">
+    <div class="h-esq">
+      <div class="h-dra">Dra</div>
+      <div class="h-nome">Lucia Kratz</div>
+      <div class="h-cargo">P s i c ó l o g a</div>
+      <div class="h-crp">CRP 09/20590</div>
+    </div>
+    <div class="h-centro">
+      <div class="h-sub">Ferramenta clínica</div>
+      <div class="h-titulo">Gestão da Ansiedade</div>
+    </div>
   </div>
 </header>
 
@@ -381,6 +384,7 @@ window.entrarPac=function(){
   var n=document.getElementById('nomePac').value.trim();
   if(!n){toast('Digite seu nome');return;}
   if(!DB[n.toLowerCase()]){toast('Nome não encontrado. Solicite à Dra. Lucia.');return;}
+  localStorage.setItem('pac_nome_salvo', n);
   usuario=n;perfil='pac';abrirApp();
 };
 
@@ -729,9 +733,9 @@ function esconder(ids){ids.forEach(function(id){var el=document.getElementById(i
 function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2500);}
 
 // ===== INIT =====
-document.getElementById('telaLogin').innerHTML='<div class="loading">Carregando...</div>';
+var nomeGuardado = localStorage.getItem('pac_nome_salvo')||'';
 carregarTodos().then(function(){
-  document.getElementById('telaLogin').innerHTML=`
+  var loginHtml=`
   <div style="text-align:right;margin-top:10px;margin-bottom:4px">
     <span onclick="togglePsi()" style="font-size:11px;color:var(--cinza);cursor:pointer;text-decoration:underline">Acesso restrito</span>
   </div>
@@ -742,7 +746,7 @@ carregarTodos().then(function(){
   <div class="card">
     <div style="font-weight:700;color:var(--roxo-med);font-size:16px;margin-bottom:5px">Olá! 👋</div>
     <div style="font-size:13px;color:var(--cinza);margin-bottom:14px">Digite seu nome para acessar seu acompanhamento.</div>
-    <input type="text" id="nomePac" placeholder="Seu nome" autocomplete="off" oninput="autoNome(this.value)" onkeydown="if(event.key==='Enter')entrarPac()">
+    <input type="text" id="nomePac" placeholder="Seu nome" autocomplete="off" value="${nomeGuardado}" oninput="autoNome(this.value)" onkeydown="if(event.key==='Enter')entrarPac()">
     <div class="autocomplete-box" id="autoBox"></div>
     <div style="margin-top:12px"><button class="btn btn-roxo" style="width:100%" onclick="entrarPac()">Entrar</button></div>
   </div>
@@ -756,6 +760,10 @@ carregarTodos().then(function(){
       <div><strong style="color:var(--roxo-esc)">Roda da Vida:</strong> Avalie seu nível de satisfação em cada área da sua vida.</div>
     </div>
   </div>`;
+  document.getElementById('telaLogin').innerHTML=loginHtml;
+}).catch(function(){
+  // fallback se Firebase falhar
+  document.getElementById('telaLogin').innerHTML='<div style="padding:20px;text-align:center;color:var(--cinza)">Erro ao conectar. Verifique sua internet e recarregue a página.</div>';
 });
 </script>
 </body>
